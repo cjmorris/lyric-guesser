@@ -1,24 +1,22 @@
 import axios from 'axios'
 import { useEffect } from "react"
-import az from "azlyrics-ext";
+import ServerAddr from "../api/server"
 
 export default function GetLyrics(){
-    const AZLyrics = require("azlyrics-ext");
-    
 
     async function getLyric(){
         try {
-
+            const url = ServerAddr + "/weatherforecast"
             
-            const {data} = await axios.get(
-                'https://www.azlyrics.com/lyrics/queen/wewillrockyou.html', {
+            const {data} = await axios.get(url, {
                     // headers: {
                     //     "Access-Control-Allow-Origin": "*",
                     //     "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
                     //     "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token",
                     //     'Access-Control-Allow-Credentials':true,
-                    // }
+                    //}
                 });
+            console.log(data)
         } catch (error) {
             
         }
