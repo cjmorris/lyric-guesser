@@ -1,28 +1,18 @@
+import Song from "../interfaces/Song";
 import LyricGridTile from "./LyricGridTile";
 
-export default function LyricGrid() {
+interface Props {
+  song: Song;
+}
 
-    return (
-        <>
-            <div className="lyricGrid">
-                <LyricGridTile/>
-                <LyricGridTile/>
-                <LyricGridTile/><LyricGridTile/><LyricGridTile/>
-                <LyricGridTile/>
-                <LyricGridTile/>
-                <LyricGridTile/>
-                <LyricGridTile/>
-                <LyricGridTile/>
-                <LyricGridTile/>
-                <LyricGridTile/>
-                <LyricGridTile/>
-                <LyricGridTile/>
-                <LyricGridTile/>
-                <LyricGridTile/>
-                <LyricGridTile/>
-                <LyricGridTile/>
-                
-            </div> 
-        </> 
-      )
+export default function LyricGrid(props: Props) {
+  return (
+    <>
+      <div className="lyricGrid">
+        {props.song.lyrics.map(function (lyric) {
+          return <LyricGridTile word={lyric} />;
+        })}
+      </div>
+    </>
+  );
 }

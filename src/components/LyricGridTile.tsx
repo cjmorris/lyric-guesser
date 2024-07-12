@@ -1,10 +1,11 @@
-export default function LyricGridTile() {
+interface Props {
+  word: string;
+}
 
-    return (
-        <>
-            <div className="lyricGridTile">
-               
-            </div> 
-        </> 
-      )
+export default function LyricGridTile(props: Props) {
+  return (
+    <>
+      <div className="lyricGridTile">{props.word}</div>
+    </>
+  );
 }

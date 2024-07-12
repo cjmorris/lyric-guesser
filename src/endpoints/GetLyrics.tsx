@@ -1,20 +1,22 @@
-import axios from 'axios'
-import ServerAddr from "../api/server"
+import axios from "axios";
+import ServerAddr from "../api/server";
+import Song from "../interfaces/Song";
 
-export default function GetLyrics(){
-
-    async function getLyric(){
-        try {
-            const url = ServerAddr + "/lyrics"
-            
-            const {data} = await axios.get(url);
-            console.log(data)
-        } catch (error) {
-            
-        }
-
-
+export default async function GetLyrics() {
+  async function getLyric() {
+    try {
+      const url = ServerAddr + "/lyrics";
+      const { data } = await axios.get(url);
+      return data;
+    } catch (error) {
+      throw error;
     }
-    getLyric()
-    return <></>
+  }
+  const result = await getLyric();
+  const song: Song = {
+    songName: result.songName,
+    artist: result.artist,
+    lyrics: result.lyrics,
+  };
+  return song;
 }
