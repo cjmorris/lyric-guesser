@@ -4,7 +4,7 @@ import GetLyrics from "./endpoints/GetLyrics";
 import { useState, useEffect } from "react";
 import "./styles/App.css";
 import Header from "./components/Header/Header";
-import Guesser from "./components/Guesser/Guesser";
+import Footer from "./components/Footer/Footer";
 
 export default function App() {
   const [song, setSong] = useState<Song>({
@@ -22,7 +22,7 @@ export default function App() {
       <div className="lyricGame">
         <Header />
         <LyricGrid song={song} />
-        <Guesser />
+        <Footer />
       </div>
     </>
   );
