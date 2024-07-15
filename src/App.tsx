@@ -1,8 +1,10 @@
 import Song from "./interfaces/Song";
-import LyricGrid from "./components/LyricGrid";
+import LyricGrid from "./components/LyricGrid/LyricGrid";
 import GetLyrics from "./endpoints/GetLyrics";
 import { useState, useEffect } from "react";
 import "./styles/App.css";
+import Header from "./components/Header/Header";
+import Guesser from "./components/Guesser/Guesser";
 
 export default function App() {
   const [song, setSong] = useState<Song>({
@@ -18,9 +20,9 @@ export default function App() {
   return (
     <>
       <div className="lyricGame">
-        <div className="gamePanel">
-          <LyricGrid song={song} />
-        </div>
+        <Header />
+        <LyricGrid song={song} />
+        <Guesser />
       </div>
     </>
   );

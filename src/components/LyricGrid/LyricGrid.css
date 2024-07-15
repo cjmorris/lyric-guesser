@@ -1,0 +1,26 @@
+.lyricGrid {
+  --side-padding: 20px;
+  display: inline-grid;
+  max-width: 1000px;
+  width: calc(100% - 2 * var(--side-padding));
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1px 5px;
+  place-items: center;
+  align-content: space-between;
+  flex: 1;
+  overflow-y: scroll;
+  padding-left: var(--side-padding);
+  padding-right: var(--side-padding);
+}
+
+.lyricGridTile {
+  text-align: center;
+  vertical-align: middle;
+  font-family: "Roboto";
+  width: 150px;
+  height: 20px;
+  line-height: 20px;
+  background-color: gray;
+  color: white;
+  font-size: 12px;
+}

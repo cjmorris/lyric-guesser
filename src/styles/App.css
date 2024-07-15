@@ -1,31 +1,13 @@
 html,
 body {
   margin: 0px;
+  background-color: rgb(12, 12, 61);
 }
 
 .lyricGame {
   display: flex;
-  height: calc(100vh);
+  height: 100vh;
+  width: 100vw;
   flex-direction: column;
   align-items: center;
-}
-
-.lyricGrid {
-  display: inline-grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 0px 5px;
-  justify-content: center;
-  align-content: space-between;
-  flex-grow: 1;
-}
-
-.lyricGridTile {
-  text-align: center;
-  vertical-align: middle;
-  font-family: "Roboto";
-  width: 150px;
-  height: 20px;
-  line-height: 20px;
-  border: 1px solid gray;
-  font-size: 12px;
 }

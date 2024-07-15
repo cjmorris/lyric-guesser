@@ -1,5 +1,6 @@
-import Song from "../interfaces/Song";
+import Song from "../../interfaces/Song";
 import LyricGridTile from "./LyricGridTile";
+import "./LyricGrid.css";
 
 interface Props {
   song: Song;
