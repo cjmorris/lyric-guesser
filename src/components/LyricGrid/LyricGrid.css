@@ -1,16 +1,23 @@
 .lyricGrid {
   --side-padding: 20px;
-  display: inline-grid;
+  --column-count: 5;
+  -webkit-column-count: var(--column-count);
+  -moz-column-count: var(--column-count);
+  column-count: var(--column-count);
   max-width: 1000px;
   width: calc(100% - 2 * var(--side-padding));
   grid-template-columns: repeat(5, 1fr);
-  gap: 1px 5px;
   place-items: center;
-  align-content: space-between;
   flex: 1;
   overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
   padding-left: var(--side-padding);
   padding-right: var(--side-padding);
+}
+
+.lyricGrid::-webkit-scrollbar {
+  display: none;
 }
 
 .lyricGridTile {
@@ -20,7 +27,9 @@
   width: 150px;
   height: 20px;
   line-height: 20px;
+  margin-bottom: 2px;
   background-color: gray;
   color: white;
   font-size: 12px;
+  border-radius: 2px;
 }
