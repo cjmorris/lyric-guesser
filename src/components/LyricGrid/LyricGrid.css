@@ -1,13 +1,11 @@
 .lyricGrid {
   --side-padding: 20px;
-  --column-count: 5;
+  --column-count: 6;
   -webkit-column-count: var(--column-count);
   -moz-column-count: var(--column-count);
   column-count: var(--column-count);
   max-width: 1000px;
   width: calc(100% - 2 * var(--side-padding));
-  grid-template-columns: repeat(5, 1fr);
-  place-items: center;
   flex: 1;
   overflow-y: scroll;
   -ms-overflow-style: none;
@@ -24,12 +22,13 @@
   text-align: center;
   vertical-align: middle;
   font-family: "Roboto";
-  width: 150px;
+  width: 120px;
   height: 20px;
   line-height: 20px;
-  margin-bottom: 2px;
   background-color: gray;
   color: white;
   font-size: 12px;
   border-radius: 2px;
+  overflow: hidden;
+  margin: 0px auto 2px auto;
 }
