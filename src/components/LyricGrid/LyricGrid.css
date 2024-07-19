@@ -31,3 +31,8 @@
   overflow: hidden;
   margin: 0px auto 2px auto;
 }
+
+.correctTile {
+  transition: background-color 0.2s;
+  background-color: rgb(71, 71, 71);
+}

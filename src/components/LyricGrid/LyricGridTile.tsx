@@ -8,7 +8,11 @@ interface Props {
 export default function LyricGridTile(props: Props) {
   return (
     <>
-      <div className="lyricGridTile">
+      <div
+        className={
+          props.correctlyGuessed ? "lyricGridTile correctTile" : "lyricGridTile"
+        }
+      >
         {props.correctlyGuessed && props.word}
       </div>
     </>
