@@ -59,12 +59,25 @@ export default function App() {
     return word.toLowerCase();
   }
 
+  function getScore() {
+    let count = 0;
+    lyrics.forEach((lyric) => {
+      if (lyric.correctlyGuessed) count++;
+    });
+    return count;
+  }
+
   return (
     <>
       <div className="lyricGame">
         <Header />
         <LyricGrid lyrics={lyrics} />
-        <Footer guess={guess} updateGuess={updateGuess} />
+        <Footer
+          guess={guess}
+          updateGuess={updateGuess}
+          score={getScore()}
+          wordCount={lyrics.length}
+        />
       </div>
     </>
   );
