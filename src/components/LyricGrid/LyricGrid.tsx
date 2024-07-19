@@ -1,4 +1,3 @@
-import Song from "../../interfaces/Song";
 import LyricGridTile from "./LyricGridTile";
 import "./LyricGrid.css";
 import Lyric from "../../interfaces/Lyric";
@@ -11,7 +10,7 @@ export default function LyricGrid(props: Props) {
   return (
     <>
       <div className="lyricGrid">
-        {props.lyrics.map(function (lyric, index) {
+        {props.lyrics.map(function (lyric) {
           return (
             <LyricGridTile
               word={lyric.word}
