@@ -36,3 +36,7 @@
   transition: background-color 0.2s;
   background-color: rgb(71, 71, 71);
 }
+
+.incorrectTile {
+  background-color: rgb(219, 102, 102);
+}

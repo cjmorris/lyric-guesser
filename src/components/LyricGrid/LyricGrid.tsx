@@ -15,6 +15,7 @@ export default function LyricGrid(props: Props) {
             <LyricGridTile
               word={lyric.word}
               correctlyGuessed={lyric.correctlyGuessed}
+              gaveUp={lyric.gaveUp}
             />
           );
         })}

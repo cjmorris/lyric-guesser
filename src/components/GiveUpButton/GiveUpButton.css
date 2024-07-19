@@ -1,0 +1,15 @@
+.giveUpButton {
+  background-color: rgb(235, 52, 52);
+  width: 100px;
+  height: 30px;
+  color: white;
+  border: 1px black solid;
+  border-radius: 10px;
+  padding-left: 10px;
+  font-size: 15px;
+}
+
+.giveUpButton:hover {
+  background-color: red;
+  cursor: pointer;
+}

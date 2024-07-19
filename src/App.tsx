@@ -25,6 +25,7 @@ export default function App() {
       const newLyric: Lyric = {
         word: lyric,
         correctlyGuessed: false,
+        gaveUp: false,
       };
       lyricArr.push(newLyric);
     });
@@ -55,6 +56,20 @@ export default function App() {
     setLyrics(nextLyrics);
   }
 
+  function giveUp() {
+    const nextLyrics = lyrics.map((lyric) => {
+      if (!lyric.correctlyGuessed) {
+        return {
+          ...lyric,
+          gaveUp: true,
+        };
+      } else {
+        return lyric;
+      }
+    });
+    setLyrics(nextLyrics);
+  }
+
   function simplifyWord(word: string) {
     return word.toLowerCase();
   }
@@ -77,6 +92,7 @@ export default function App() {
           updateGuess={updateGuess}
           score={getScore()}
           wordCount={lyrics.length}
+          giveUp={giveUp}
         />
       </div>
     </>
