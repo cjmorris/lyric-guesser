@@ -5,24 +5,66 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
+import Lyric from "./interfaces/Lyric";
 
 export default function App() {
-  const [song, setSong] = useState<Song>({
-    songName: "",
-    artist: "",
-    lyrics: [],
-  });
+  const [songName, setSongName] = useState("");
+  const [artist, setArtist] = useState("");
+  const [lyrics, setLyrics] = useState<Lyric[]>([]);
+  const [guess, setGuess] = useState("");
 
   useEffect(() => {
-    GetLyrics(setSong);
+    GetLyrics(updateSong);
   }, []);
+
+  function updateSong(song: Song) {
+    setSongName(song.songName);
+    setArtist(song.artist);
+    const lyricArr: Lyric[] = [];
+    song.lyrics.forEach((lyric) => {
+      const newLyric: Lyric = {
+        word: lyric,
+        correctlyGuessed: false,
+      };
+      lyricArr.push(newLyric);
+    });
+    setLyrics(lyricArr);
+  }
+
+  function updateGuess(newGuess: string) {
+    let newWordFound = false;
+    const nextLyrics = lyrics.map((lyric) => {
+      if (
+        simplifyWord(lyric.word) === simplifyWord(newGuess) &&
+        !lyric.correctlyGuessed
+      ) {
+        newWordFound = true;
+        return {
+          ...lyric,
+          correctlyGuessed: true,
+        };
+      } else {
+        return lyric;
+      }
+    });
+    if (newWordFound) {
+      setGuess("");
+    } else {
+      setGuess(newGuess);
+    }
+    setLyrics(nextLyrics);
+  }
+
+  function simplifyWord(word: string) {
+    return word.toLowerCase();
+  }
 
   return (
     <>
       <div className="lyricGame">
         <Header />
-        <LyricGrid song={song} />
-        <Footer />
+        <LyricGrid lyrics={lyrics} />
+        <Footer guess={guess} updateGuess={updateGuess} />
       </div>
     </>
   );
