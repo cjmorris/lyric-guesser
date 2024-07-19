@@ -12,6 +12,7 @@ export default function App() {
   const [artist, setArtist] = useState("");
   const [lyrics, setLyrics] = useState<Lyric[]>([]);
   const [guess, setGuess] = useState("");
+  const [gameOver, setGameOver] = useState(false);
 
   useEffect(() => {
     GetLyrics(updateSong);
@@ -33,27 +34,29 @@ export default function App() {
   }
 
   function updateGuess(newGuess: string) {
-    let newWordFound = false;
-    const nextLyrics = lyrics.map((lyric) => {
-      if (
-        simplifyWord(lyric.word) === simplifyWord(newGuess) &&
-        !lyric.correctlyGuessed
-      ) {
-        newWordFound = true;
-        return {
-          ...lyric,
-          correctlyGuessed: true,
-        };
+    if (!gameOver) {
+      let newWordFound = false;
+      const nextLyrics = lyrics.map((lyric) => {
+        if (
+          simplifyWord(lyric.word) === simplifyWord(newGuess) &&
+          !lyric.correctlyGuessed
+        ) {
+          newWordFound = true;
+          return {
+            ...lyric,
+            correctlyGuessed: true,
+          };
+        } else {
+          return lyric;
+        }
+      });
+      if (newWordFound) {
+        setGuess("");
       } else {
-        return lyric;
+        setGuess(newGuess);
       }
-    });
-    if (newWordFound) {
-      setGuess("");
-    } else {
-      setGuess(newGuess);
+      setLyrics(nextLyrics);
     }
-    setLyrics(nextLyrics);
   }
 
   function giveUp() {
@@ -68,6 +71,7 @@ export default function App() {
       }
     });
     setLyrics(nextLyrics);
+    setGameOver(true);
   }
 
   function simplifyWord(word: string) {
