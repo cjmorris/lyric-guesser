@@ -6,6 +6,7 @@ import "./App.css";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import Lyric from "./interfaces/Lyric";
+import Menu from "./components/Menu/Menu";
 
 export default function App() {
   const [songName, setSongName] = useState("");
@@ -13,6 +14,7 @@ export default function App() {
   const [lyrics, setLyrics] = useState<Lyric[]>([]);
   const [guess, setGuess] = useState("");
   const [gameOver, setGameOver] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
 
   useEffect(() => {
     GetLyrics(updateSong);
@@ -72,6 +74,11 @@ export default function App() {
     });
     setLyrics(nextLyrics);
     setGameOver(true);
+    setShowMenu(true);
+  }
+
+  function closeMenu() {
+    setShowMenu(false);
   }
 
   function simplifyWord(word: string) {
@@ -97,6 +104,12 @@ export default function App() {
           score={getScore()}
           wordCount={lyrics.length}
           giveUp={giveUp}
+        />
+        <Menu
+          songName={songName}
+          artist={artist}
+          hidden={!showMenu}
+          closeMenu={closeMenu}
         />
       </div>
     </>

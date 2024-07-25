@@ -2,7 +2,7 @@ html,
 body {
   font-family: "Roboto";
   margin: 0px;
-  background-color: rgb(21, 14, 51);
+  background-color: rgb(21, 14, 51) !important;
 }
 
 .lyricGame {
