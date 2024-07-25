@@ -1,7 +1,6 @@
 import Song from "./interfaces/Song";
 import LyricGrid from "./components/LyricGrid/LyricGrid";
-import GetLyrics from "./endpoints/GetLyrics";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./App.css";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
@@ -16,6 +15,7 @@ export default function App() {
   const [guess, setGuess] = useState("");
   const [gameOver, setGameOver] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
+  const [showLoading, setShowLoading] = useState(false);
 
   function updateSong(song: Song) {
     setSongName(song.songName);
@@ -90,13 +90,37 @@ export default function App() {
     return count;
   }
 
+  function setLoading(isLoading: boolean) {
+    setShowLoading(isLoading);
+  }
+
+  function resetGame() {
+    setSongName("");
+    setArtist("");
+    setLyrics([]);
+    setGuess("");
+    setGameOver(false);
+    setShowMenu(false);
+  }
+
   return (
     <>
       <div className="lyricGame">
         <Header />
         {lyrics.length == 0 ? (
-          <div className="playButtonDiv">
-            <PlayButton updateSong={updateSong} />
+          <div className="newGameDiv">
+            {showLoading ? (
+              <div className="spinner-border text-light" role="status">
+                <span className="visually-hidden">Loading...</span>
+              </div>
+            ) : (
+              <PlayButton
+                setLoading={setLoading}
+                updateSong={updateSong}
+                displayText="Play"
+                resetGame={resetGame}
+              />
+            )}
           </div>
         ) : (
           <>
@@ -104,9 +128,13 @@ export default function App() {
             <Footer
               guess={guess}
               updateGuess={updateGuess}
+              updateSong={updateSong}
               score={getScore()}
               wordCount={lyrics.length}
               giveUp={giveUp}
+              gameOver={gameOver}
+              resetGame={resetGame}
+              setLoading={setLoading}
             />
           </>
         )}

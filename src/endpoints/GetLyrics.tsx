@@ -2,7 +2,10 @@ import axios from "axios";
 import ServerAddr from "../api/server";
 import Song from "../interfaces/Song";
 
-export default function GetLyrics(setSong: (newSong: Song) => void) {
+export default function GetLyrics(
+  setSong: (newSong: Song) => void,
+  setLoading: (isLoading: boolean) => void
+) {
   try {
     const url = ServerAddr + "/lyrics";
     axios.get(url).then((result) => {
@@ -12,8 +15,10 @@ export default function GetLyrics(setSong: (newSong: Song) => void) {
         lyrics: result.data.lyrics,
       };
       setSong(song);
+      setLoading(false);
     });
   } catch (error) {
+    setLoading(false);
     throw error;
   }
 }
