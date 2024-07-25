@@ -7,6 +7,7 @@ import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import Lyric from "./interfaces/Lyric";
 import Menu from "./components/Menu/Menu";
+import PlayButton from "./components/PlayButton/PlayButton";
 
 export default function App() {
   const [songName, setSongName] = useState("");
@@ -15,10 +16,6 @@ export default function App() {
   const [guess, setGuess] = useState("");
   const [gameOver, setGameOver] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
-
-  useEffect(() => {
-    GetLyrics(updateSong);
-  }, []);
 
   function updateSong(song: Song) {
     setSongName(song.songName);
@@ -97,14 +94,23 @@ export default function App() {
     <>
       <div className="lyricGame">
         <Header />
-        <LyricGrid lyrics={lyrics} />
-        <Footer
-          guess={guess}
-          updateGuess={updateGuess}
-          score={getScore()}
-          wordCount={lyrics.length}
-          giveUp={giveUp}
-        />
+        {lyrics.length == 0 ? (
+          <div className="playButtonDiv">
+            <PlayButton updateSong={updateSong} />
+          </div>
+        ) : (
+          <>
+            <LyricGrid lyrics={lyrics} />
+            <Footer
+              guess={guess}
+              updateGuess={updateGuess}
+              score={getScore()}
+              wordCount={lyrics.length}
+              giveUp={giveUp}
+            />
+          </>
+        )}
+
         <Menu
           songName={songName}
           artist={artist}

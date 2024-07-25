@@ -14,7 +14,7 @@ export default function Menu(props: Props) {
       <div className={props.hidden ? "menu" : "menu menu-open"}>
         <CloseButton className="close" onClick={props.closeMenu} />
         <div className="menu-content">
-          <p>Today's song was:</p>
+          <p>The song was:</p>
           <h2>{props.songName}</h2>
           <p>
             <i>{props.artist}</i>
