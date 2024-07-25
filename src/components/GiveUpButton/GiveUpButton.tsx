@@ -2,6 +2,7 @@ import "./GiveUpButton.css";
 
 interface Props {
   giveUp: () => void;
+  gameOver: boolean;
 }
 
 export default function GiveUpButton(props: Props) {
@@ -12,7 +13,11 @@ export default function GiveUpButton(props: Props) {
   }
 
   return (
-    <button className="giveUpButton" onClick={confirmGiveUp}>
+    <button
+      className="giveUpButton"
+      onClick={confirmGiveUp}
+      disabled={props.gameOver}
+    >
       Give Up
     </button>
   );

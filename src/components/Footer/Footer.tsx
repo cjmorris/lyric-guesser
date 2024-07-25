@@ -21,7 +21,7 @@ export default function Footer(props: Props) {
   return (
     <ul className="footer">
       <li>
-        <GiveUpButton giveUp={props.giveUp} />
+        <GiveUpButton giveUp={props.giveUp} gameOver={props.gameOver} />
       </li>
       <li>
         {props.gameOver ? (
