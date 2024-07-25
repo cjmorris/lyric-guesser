@@ -1,17 +1,21 @@
+:root {
+  --lyric-tile-width: 120px;
+}
+
 .lyricGrid {
-  --side-padding: 20px;
-  --column-count: 6;
-  -webkit-column-count: var(--column-count);
-  -moz-column-count: var(--column-count);
-  column-count: var(--column-count);
-  max-width: 1000px;
-  width: calc(100% - 2 * var(--side-padding));
+  --side-margin: 50px;
+  --column-width: 130px;
+  -webkit-column-width: var(--column-width);
+  -moz-column-width: var(--column-width);
+  column-width: var(--column-width);
+  max-width: 1600px;
+  width: calc(100% - 2 * var(--side-margin));
   flex: 1;
   overflow-y: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;
-  padding-left: var(--side-padding);
-  padding-right: var(--side-padding);
+  margin-left: var(--side-margin);
+  margin-right: var(--side-margin);
 }
 
 .lyricGrid::-webkit-scrollbar {
@@ -21,7 +25,7 @@
 .lyricGridTile {
   text-align: center;
   vertical-align: middle;
-  width: 120px;
+  width: var(--lyric-tile-width);
   height: 20px;
   line-height: 20px;
   background-color: gray;
