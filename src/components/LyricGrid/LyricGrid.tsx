@@ -13,6 +13,7 @@ export default function LyricGrid(props: Props) {
         {props.lyrics.map(function (lyric) {
           return (
             <LyricGridTile
+              key={lyric.id}
               word={lyric.word}
               correctlyGuessed={lyric.correctlyGuessed}
               gaveUp={lyric.gaveUp}

@@ -1,12 +1,13 @@
 import Song from "./interfaces/Song";
 import LyricGrid from "./components/LyricGrid/LyricGrid";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import Lyric from "./interfaces/Lyric";
 import Menu from "./components/Menu/Menu";
 import PlayButton from "./components/PlayButton/PlayButton";
+import JSConfetti from "js-confetti";
 
 export default function App() {
   const [songName, setSongName] = useState("");
@@ -16,6 +17,21 @@ export default function App() {
   const [gameOver, setGameOver] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
   const [showLoading, setShowLoading] = useState(false);
+  const [won, setWon] = useState(false);
+
+  useEffect(() => {
+    if (lyrics.length !== 0) {
+      let noWordsLeft: boolean = true;
+      lyrics.forEach((lyric) => {
+        if (!lyric.correctlyGuessed) {
+          noWordsLeft = false;
+        }
+      });
+      if (noWordsLeft) {
+        songComplete();
+      }
+    }
+  }, [lyrics]);
 
   function updateSong(song: Song) {
     setSongName(song.songName);
@@ -23,6 +39,7 @@ export default function App() {
     const lyricArr: Lyric[] = [];
     song.lyrics.forEach((lyric) => {
       const newLyric: Lyric = {
+        id: crypto.randomUUID(),
         word: lyric,
         correctlyGuessed: false,
         gaveUp: false,
@@ -94,6 +111,27 @@ export default function App() {
     setShowLoading(isLoading);
   }
 
+  function songComplete() {
+    setGameOver(true);
+    setWon(true);
+    setShowMenu(true);
+    const jsConfetti = new JSConfetti();
+    jsConfetti
+      .addConfetti({
+        confettiColors: [
+          "#ff0a54",
+          "#ff477e",
+          "#ff7096",
+          "#ff85a1",
+          "#fbb1bd",
+          "#f9bec7",
+        ],
+        confettiRadius: 6,
+        confettiNumber: 250,
+      })
+      .then(() => jsConfetti.clearCanvas());
+  }
+
   function resetGame() {
     setSongName("");
     setArtist("");
@@ -101,6 +139,8 @@ export default function App() {
     setGuess("");
     setGameOver(false);
     setShowMenu(false);
+    setWon(false);
+    setShowLoading(false);
   }
 
   return (
@@ -143,6 +183,7 @@ export default function App() {
           songName={songName}
           artist={artist}
           hidden={!showMenu}
+          won={won}
           closeMenu={closeMenu}
         />
       </div>

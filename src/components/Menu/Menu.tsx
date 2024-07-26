@@ -5,16 +5,24 @@ interface Props {
   songName: string;
   artist: string;
   hidden: boolean;
+  won: boolean;
   closeMenu: () => void;
 }
 
 export default function Menu(props: Props) {
   return (
     <>
-      <div className={props.hidden ? "menu" : "menu menu-open"}>
+      <div
+        data-bs-theme="dark"
+        className={props.hidden ? "menu" : "menu menu-open"}
+      >
         <CloseButton className="close" onClick={props.closeMenu} />
         <div className="menu-content">
-          <p>The song was:</p>
+          {props.won ? (
+            <p>Congratulations! You know all the words to:</p>
+          ) : (
+            <p>The song was:</p>
+          )}
           <h2>{props.songName}</h2>
           <p>
             <i>{props.artist}</i>
