@@ -16,6 +16,7 @@
   scrollbar-width: none;
   margin-left: var(--side-margin);
   margin-right: var(--side-margin);
+  padding: 8px 0px 8px 0px;
 }
 
 .lyricGrid::-webkit-scrollbar {
