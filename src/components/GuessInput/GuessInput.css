@@ -1,7 +1,7 @@
 .guessInputBox {
   width: 450px;
   height: 40px;
-  background-color: white;
+  background-color: var(--input-color);
   border-radius: 10px;
   font-size: 20px;
   border: none;

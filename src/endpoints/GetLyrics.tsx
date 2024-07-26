@@ -7,7 +7,7 @@ export default function GetLyrics(
   setLoading: (isLoading: boolean) => void
 ) {
   try {
-    const url = ServerAddr + "/lyrics";
+    const url = ServerAddr + "/getRandomSong";
     axios.get(url).then((result) => {
       const song: Song = {
         songName: result.data.songName,

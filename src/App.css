@@ -1,8 +1,24 @@
+:root {
+  --background-color: #070f2b;
+  --background-color-menu: #16154b;
+  --font-color: rgb(255, 255, 255);
+  --button-color: rgb(24, 185, 33);
+  --button-color-hover: rgb(17, 133, 23);
+  --button-color-give-up: rgb(235, 52, 52);
+  --button-color-give-up-hover: rgb(148, 18, 18);
+  --button-border-color: black;
+  --tile-color: rgb(165, 165, 165);
+  --tile-color-correct: rgb(58, 58, 58);
+  --tile-color-failed: rgb(223, 92, 92);
+  --input-color: white;
+  --break-color: #9290c3;
+}
+
 html,
 body {
   font-family: "Roboto";
   margin: 0px;
-  background-color: rgb(21, 14, 51) !important;
+  background-color: var(--background-color) !important;
 }
 
 .lyricGame {

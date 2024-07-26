@@ -3,7 +3,7 @@ p {
 }
 
 .menu {
-  background-color: rgb(44, 41, 61);
+  background-color: var(--background-color-menu);
   padding: 10px;
   width: 400px;
   border-radius: 10px;
@@ -23,7 +23,7 @@ p {
 
 .menu-content {
   text-align: center;
-  color: white;
+  color: var(--font-color);
 }
 
 .close {

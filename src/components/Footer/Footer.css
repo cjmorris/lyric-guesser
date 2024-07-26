@@ -16,7 +16,7 @@ li {
   height: 60px;
   align-items: center;
   justify-items: center;
-  border-top: 2px white solid;
+  border-top: 2px var(--break-color) solid;
 }
 
 li:nth-child(1) {

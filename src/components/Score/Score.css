@@ -1,5 +1,5 @@
 .score {
   margin-right: 20px;
   font-size: 40px;
-  color: white;
+  color: var(--font-color);
 }

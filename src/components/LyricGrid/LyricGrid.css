@@ -3,7 +3,7 @@
 }
 
 .lyricGrid {
-  --side-margin: 50px;
+  --side-margin: 8%;
   --column-width: 130px;
   -webkit-column-width: var(--column-width);
   -moz-column-width: var(--column-width);
@@ -28,8 +28,8 @@
   width: var(--lyric-tile-width);
   height: 20px;
   line-height: 20px;
-  background-color: gray;
-  color: white;
+  background-color: var(--tile-color);
+  color: var(--font-color);
   font-size: 12px;
   border-radius: 2px;
   overflow: hidden;
@@ -38,9 +38,9 @@
 
 .correctTile {
   transition: background-color 0.2s;
-  background-color: rgb(71, 71, 71);
+  background-color: var(--tile-color-correct);
 }
 
 .incorrectTile {
-  background-color: rgb(219, 102, 102);
+  background-color: var(--tile-color-failed);
 }
