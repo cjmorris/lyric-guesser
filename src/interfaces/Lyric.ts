@@ -1,5 +1,5 @@
 interface Lyric {
-  id: string;
+  id: number;
   word: string;
   correctlyGuessed: boolean;
   gaveUp: boolean;

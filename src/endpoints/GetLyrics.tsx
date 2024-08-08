@@ -1,5 +1,5 @@
 import axios from "axios";
-import ServerAddr from "../api/server";
+import config from "../../config.json";
 import Song from "../interfaces/Song";
 
 export default function GetLyrics(
@@ -7,12 +7,13 @@ export default function GetLyrics(
   setLoading: (isLoading: boolean) => void
 ) {
   try {
-    const url = ServerAddr + "/getRandomSong";
-    axios.get(url).then((result) => {
+    axios.get(config.server_url).then((result) => {
+      console.log(result.data);
       const song: Song = {
-        songName: result.data.songName,
-        artist: result.data.artist,
-        lyrics: result.data.lyrics,
+        id: result.data.Id,
+        songName: result.data.Name,
+        artist: result.data.Artist,
+        lyrics: result.data.Lyrics,
       };
       setSong(song);
       setLoading(false);

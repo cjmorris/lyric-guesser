@@ -37,9 +37,9 @@ export default function App() {
     setSongName(song.songName);
     setArtist(song.artist);
     const lyricArr: Lyric[] = [];
-    song.lyrics.forEach((lyric) => {
+    song.lyrics.forEach((lyric, index) => {
       const newLyric: Lyric = {
-        id: crypto.randomUUID(),
+        id: index,
         word: lyric,
         correctlyGuessed: false,
         gaveUp: false,
@@ -96,7 +96,7 @@ export default function App() {
   }
 
   function simplifyWord(word: string) {
-    return word.toLowerCase();
+    return word.toLowerCase().trim();
   }
 
   function getScore() {
