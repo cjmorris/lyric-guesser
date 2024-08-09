@@ -9,7 +9,7 @@ interface Props {
   closeMenu: () => void;
 }
 
-export default function Menu(props: Props) {
+export default function FinishMenu(props: Props) {
   return (
     <>
       <div

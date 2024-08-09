@@ -31,3 +31,15 @@ p {
   top: 10px;
   right: 10px;
 }
+
+.leftalign {
+  text-align: left;
+}
+
+.centeralign {
+  text-align: center;
+}
+
+.menu-content ul {
+  list-style: disc inside;
+}

@@ -5,9 +5,9 @@ import "./App.css";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import Lyric from "./interfaces/Lyric";
-import Menu from "./components/Menu/Menu";
-import PlayButton from "./components/PlayButton/PlayButton";
 import JSConfetti from "js-confetti";
+import FinishMenu from "./components/Menu/FinishMenu";
+import StartMenu from "./components/Menu/StartMenu";
 
 export default function App() {
   const [songName, setSongName] = useState("");
@@ -15,7 +15,8 @@ export default function App() {
   const [lyrics, setLyrics] = useState<Lyric[]>([]);
   const [guess, setGuess] = useState("");
   const [gameOver, setGameOver] = useState(false);
-  const [showMenu, setShowMenu] = useState(false);
+  const [showStartMenu, setShowStartMenu] = useState(true);
+  const [showFinishMenu, setShowFinishMenu] = useState(false);
   const [showLoading, setShowLoading] = useState(false);
   const [won, setWon] = useState(false);
 
@@ -88,11 +89,11 @@ export default function App() {
     });
     setLyrics(nextLyrics);
     setGameOver(true);
-    setShowMenu(true);
+    setShowFinishMenu(true);
   }
 
   function closeMenu() {
-    setShowMenu(false);
+    setShowFinishMenu(false);
   }
 
   function simplifyWord(word: string) {
@@ -114,7 +115,7 @@ export default function App() {
   function songComplete() {
     setGameOver(true);
     setWon(true);
-    setShowMenu(true);
+    setShowFinishMenu(true);
     const jsConfetti = new JSConfetti();
     jsConfetti
       .addConfetti({
@@ -138,9 +139,10 @@ export default function App() {
     setLyrics([]);
     setGuess("");
     setGameOver(false);
-    setShowMenu(false);
+    setShowFinishMenu(false);
     setWon(false);
     setShowLoading(false);
+    setShowStartMenu(false);
   }
 
   return (
@@ -149,17 +151,10 @@ export default function App() {
         <Header />
         {lyrics.length == 0 ? (
           <div className="newGameDiv">
-            {showLoading ? (
+            {showLoading && (
               <div className="spinner-border text-light" role="status">
                 <span className="visually-hidden">Loading...</span>
               </div>
-            ) : (
-              <PlayButton
-                setLoading={setLoading}
-                updateSong={updateSong}
-                displayText="Play"
-                resetGame={resetGame}
-              />
             )}
           </div>
         ) : (
@@ -178,11 +173,16 @@ export default function App() {
             />
           </>
         )}
-
-        <Menu
+        <StartMenu
+          setLoading={setLoading}
+          updateSong={updateSong}
+          resetGame={resetGame}
+          hidden={!showStartMenu}
+        />
+        <FinishMenu
           songName={songName}
           artist={artist}
-          hidden={!showMenu}
+          hidden={!showFinishMenu}
           won={won}
           closeMenu={closeMenu}
         />
